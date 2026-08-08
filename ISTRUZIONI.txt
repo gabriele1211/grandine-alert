@@ -1,0 +1,17 @@
+GRANDINE ALERT - FILE PRONTI PER GITHUB PAGES
+
+Questi sono file gia compilati: non occorre GitHub Actions.
+
+1. Aprire il repository grandine-alert su GitHub.
+2. Premere Add file e poi Upload files.
+3. Caricare TUTTO il contenuto di questa cartella nella pagina principale del repository.
+4. Confermare con Commit changes.
+5. In Settings > Pages lasciare:
+   Source: Deploy from a branch
+   Branch: main
+   Cartella: /(root)
+6. Attendere alcuni minuti e ricaricare:
+   https://gabriele1211.github.io/grandine-alert/
+
+I vecchi file package.json, src e public possono restare: non interferiscono.
+Il nuovo index.html usera direttamente i file gia pronti presenti in assets e icons.
