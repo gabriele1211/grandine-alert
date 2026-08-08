@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#061b2d"/>
+      <stop offset=".58" stop-color="#07566a"/>
+      <stop offset="1" stop-color="#08a39d"/>
+    </linearGradient>
+    <linearGradient id="car" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#48eee2"/><stop offset="1" stop-color="#b7fff8"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#sky)"/>
+  <circle cx="410" cy="102" r="46" fill="#ff594f"/>
+  <path d="m410 72 29 51h-58z" fill="white"/>
+  <rect x="405" y="88" width="10" height="20" rx="5" fill="#ff594f"/><circle cx="410" cy="116" r="5" fill="#ff594f"/>
+  <path d="M134 226c-28 0-51-22-51-49s21-48 48-50c12-45 52-77 100-77 42 0 79 25 95 62 8-3 17-5 26-5 38 0 69 30 69 67s-31 67-69 67H134z" fill="white"/>
+  <g fill="#b9fff9" stroke="#ffffff" stroke-width="7">
+    <circle cx="159" cy="287" r="22"/><circle cx="256" cy="291" r="26"/><circle cx="355" cy="283" r="20"/>
+  </g>
+  <path d="M103 388h306l-22-60c-6-17-22-28-40-28H171c-18 0-34 11-40 28z" fill="none" stroke="url(#car)" stroke-width="20" stroke-linejoin="round"/>
+  <path d="M102 389v47h308v-47" fill="none" stroke="url(#car)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M154 388h205" stroke="white" stroke-opacity=".55" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="159" cy="437" r="26" fill="#061b2d" stroke="white" stroke-width="12"/><circle cx="353" cy="437" r="26" fill="#061b2d" stroke="white" stroke-width="12"/>
+</svg>

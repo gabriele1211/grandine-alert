@@ -1,0 +1,19 @@
+{
+  "name": "Grandine Alert",
+  "short_name": "Grandine",
+  "description": "Radar locale e stima del rischio grandine nelle prossime ore.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "orientation": "portrait-primary",
+  "background_color": "#061b2d",
+  "theme_color": "#061b2d",
+  "lang": "it-IT",
+  "categories": ["weather", "utilities"],
+  "icons": [
+    {"src":"./icons/grandine-icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},
+    {"src":"./icons/grandine-icon-512.png","sizes":"512x512","type":"image/png","purpose":"any"},
+    {"src":"./icons/grandine-maskable-512.png","sizes":"512x512","type":"image/png","purpose":"maskable"}
+  ]
+}
