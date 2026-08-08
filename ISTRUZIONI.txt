@@ -1,17 +1,23 @@
-GRANDINE ALERT - FILE PRONTI PER GITHUB PAGES
+GRANDINE ALERT - VERSIONE 0 DEFINITIVA
 
-Questi sono file gia compilati: non occorre GitHub Actions.
+CARICAMENTO
+1. Estrarre questo ZIP.
+2. Aprire su GitHub il repository grandine-alert.
+3. Premere Add file > Upload files.
+4. Caricare tutto il contenuto estratto, comprese le cartelle assets e icons.
+5. Confermare con Commit changes.
+6. In Settings > Pages lasciare: Deploy from a branch, main, /(root).
 
-1. Aprire il repository grandine-alert su GitHub.
-2. Premere Add file e poi Upload files.
-3. Caricare TUTTO il contenuto di questa cartella nella pagina principale del repository.
-4. Confermare con Commit changes.
-5. In Settings > Pages lasciare:
-   Source: Deploy from a branch
-   Branch: main
-   Cartella: /(root)
-6. Attendere alcuni minuti e ricaricare:
-   https://gabriele1211.github.io/grandine-alert/
+POSIZIONI
+- Il telefono viene seguito mentre l'app è aperta.
+- Le coordinate del telefono cambiano dopo uno spostamento di circa 50 metri.
+- Radar e rischio vengono ricalcolati dopo circa 1 km o comunque ogni 10 minuti.
+- L'auto resta nel punto parcheggiato o scelto sulla cartina.
+- Il movimento del telefono non modifica mai la posizione dell'auto.
+- Con l'app completamente chiusa iPhone non consente il GPS in background.
 
-I vecchi file package.json, src e public possono restare: non interferiscono.
-Il nuovo index.html usera direttamente i file gia pronti presenti in assets e icons.
+AGGIORNAMENTI
+- Questa è la Versione 0 (0.0.0).
+- L'app controlla version.json all'apertura e ogni 15 minuti.
+- Quando verrà pubblicata la Versione 1, apparirà il pulsante Aggiorna ora.
+- Le versioni future devono essere caricate nello stesso repository grandine-alert.
