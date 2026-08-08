@@ -1,21 +1,22 @@
-GRANDINE ALERT — VERSIONE 0.3 BETA
+GRANDINE ALERT — VERSIONE 0.4 BETA
 
-MIGLIORAMENTI DEL RADAR
-- Cartina sensibilmente più luminosa e leggibile.
-- Fondo grigio medio neutro, senza dominante blu.
-- Città, strade e confini più riconoscibili.
-- Fenomeni azzurri, gialli, arancioni e rossi più brillanti.
-- Fascio radar molto più largo, luminoso e sfumato.
-- Cerchi delle distanze bianchi e maggiormente visibili.
+NOVITÀ
+- Fascia superiore nera dedicata alla barra di stato dell'iPhone.
+- Logo, titolo Grandine Alert e pulsante informazioni spostati più in basso.
+- Intestazione non più coperta da ora, rete, Wi-Fi e batteria.
+- Legenda radar corretta secondo la scala Universal Blue:
+  azzurro/blu = debole; giallo = moderata; arancione/rosso = forte;
+  rosa/viola = molto forte.
 
 AGGIORNAMENTO SU GITHUB
 1. Estrai questo file ZIP.
 2. Apri su GitHub il repository grandine-alert.
 3. Premi Add file > Upload files.
-4. Carica TUTTO il contenuto della cartella Grandine-Alert-0.3-BETA-GitHub
+4. Carica TUTTO il contenuto della cartella Grandine-Alert-0.4-BETA-GitHub
    nella radice del repository, sostituendo i file con lo stesso nome.
 5. Conferma con Commit changes.
 6. Lascia Settings > Pages impostato su main / (root).
 
-La Versione 0.2 Beta rileverà la disponibilità della Versione 0.3 Beta quando
-l'app torna in primo piano oppure durante il controllo automatico periodico.
+Se la PWA era già installata, aprila e usa l'avviso di aggiornamento. Se iOS
+conserva ancora la vecchia barra superiore, chiudi completamente l'app e
+riaprila dopo l'aggiornamento di GitHub.
