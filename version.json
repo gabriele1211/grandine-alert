@@ -1,5 +1,5 @@
 {
-  "latest": "0.0.0",
-  "label": "Versione 0",
-  "message": "Questa è la versione iniziale di Grandine Alert."
+  "latest": "0.1.0",
+  "label": "Versione 0.1 Beta",
+  "message": "Nuova gestione della posizione del telefono, auto parcheggiata fissa e aggiornamenti automatici."
 }

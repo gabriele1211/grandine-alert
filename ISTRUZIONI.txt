@@ -1,23 +1,15 @@
-GRANDINE ALERT - VERSIONE 0 DEFINITIVA
+GRANDINE ALERT — VERSIONE 0.1 BETA
 
-CARICAMENTO
-1. Estrarre questo ZIP.
-2. Aprire su GitHub il repository grandine-alert.
-3. Premere Add file > Upload files.
-4. Caricare tutto il contenuto estratto, comprese le cartelle assets e icons.
-5. Confermare con Commit changes.
-6. In Settings > Pages lasciare: Deploy from a branch, main, /(root).
+1. Apri su GitHub il repository grandine-alert.
+2. Premi Add file > Upload files.
+3. Carica TUTTO il contenuto di questa cartella nella radice del repository.
+4. Conferma con Commit changes.
+5. Lascia Settings > Pages impostato su main / (root).
 
-POSIZIONI
-- Il telefono viene seguito mentre l'app è aperta.
-- Le coordinate del telefono cambiano dopo uno spostamento di circa 50 metri.
-- Radar e rischio vengono ricalcolati dopo circa 1 km o comunque ogni 10 minuti.
-- L'auto resta nel punto parcheggiato o scelto sulla cartina.
-- Il movimento del telefono non modifica mai la posizione dell'auto.
-- Con l'app completamente chiusa iPhone non consente il GPS in background.
+Il numero «Versione 0.1 Beta» sarà visibile in fondo all'app.
 
-AGGIORNAMENTI
-- Questa è la Versione 0 (0.0.0).
-- L'app controlla version.json all'apertura e ogni 15 minuti.
-- Quando verrà pubblicata la Versione 1, apparirà il pulsante Aggiorna ora.
-- Le versioni future devono essere caricate nello stesso repository grandine-alert.
+Per provare l'avviso di aggiornamento, lascia aperta la vecchia Versione 0 mentre
+carichi questi file. Essa controlla ogni 15 minuti. Se invece riaprendo l'app appare
+già «Versione 0.1 Beta», l'aggiornamento è già avvenuto e l'avviso non serve più.
+
+Dalla 0.1 Beta, l'app verifica nuove versioni anche quando torna in primo piano.
