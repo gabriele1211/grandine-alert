@@ -1,5 +1,5 @@
 {
-  "latest": "1.13.0",
-  "label": "Versione 1.13 Diagnostica",
-  "message": "Doppio lettore radar compatibile con iPhone e Android e indicazione precisa dell’eventuale errore."
+  "latest": "1.12.0",
+  "label": "Versione 1.12 Beta",
+  "message": "Ripristinata l’analisi radar originale; aggiunta soltanto la rotazione completa e sincronizzata del fascio."
 }
