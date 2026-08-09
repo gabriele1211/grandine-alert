@@ -1,0 +1,29 @@
+GRANDINE ALERT — VERSIONE 0.7 BETA
+
+PERCHÉ QUESTA VERSIONE
+Il vecchio avviso compariva soltanto se l'app precedente restava aperta durante
+la pubblicazione. Se iPhone caricava direttamente i file nuovi, l'avviso non
+appariva perché l'app risultava già aggiornata.
+
+CORREZIONI
+- In alto è sempre visibile “v0.7”.
+- Al primo avvio compare “Aggiornamento completato — Grandine Alert 0.7 Beta”.
+- L'avviso resta finché non viene chiuso con ×.
+- Il confronto accetta soltanto versioni realmente più nuove.
+- Il riquadro “Radar intelligente” è evidenziato maggiormente.
+
+AGGIORNAMENTO SU GITHUB
+1. Estrai questo file ZIP.
+2. Apri su GitHub il repository grandine-alert.
+3. Premi Add file > Upload files.
+4. Carica TUTTO il contenuto della cartella Grandine-Alert-0.7-BETA-GitHub
+   nella radice del repository, sostituendo i file con lo stesso nome.
+5. Conferma con Commit changes.
+6. Lascia Settings > Pages impostato su main / (root).
+
+CONTROLLO
+Dopo la pubblicazione, chiudi completamente la PWA e riaprila. Devi vedere:
+- “APP METEO LOCALE · v0.7” nell'intestazione;
+- il riquadro verde “Aggiornamento completato”.
+
+Se non compaiono, GitHub o iPhone stanno ancora mostrando i file precedenti.
