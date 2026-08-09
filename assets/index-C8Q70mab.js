@@ -12652,7 +12652,7 @@ const m0 = Xd(d0),
       return M().catch(C);
     });
   },
-  Nf = "1.1.3",
+  Nf = "1.1.4",
   y0 = (S, M) => {
     const j = S.split(".").map(Number),
       d = M.split(".").map(Number);
@@ -12743,7 +12743,8 @@ async function b0(S, M) {
     J = 0,
     al = 0,
     cl = 0,
-    I = 0;
+    I = 0,
+    counts = [0, 0, 0, 0, 0];
   for (let Sl = 1; Sl < C.height; Sl += 2)
     for (let pl = 1; pl < C.width; pl += 2) {
       const jl = Math.hypot(pl - O, Sl - b) * D;
@@ -12751,11 +12752,29 @@ async function b0(S, M) {
       const il = (Sl * C.width + pl) * 4,
         hl = p0(Z[il], Z[il + 1], Z[il + 2], Z[il + 3]);
       if (!hl) continue;
-      ((R = Math.min(R, jl)), (J = Math.max(J, hl)));
+      ((R = Math.min(R, jl)),
+        (J = Math.max(J, hl)),
+        (counts[hl] += 1));
       const K = hl * hl;
       ((al += pl * K), (cl += Sl * K), (I += K));
     }
-  return I ? { distance: R, score: J, x: al / I, y: cl / I } : null;
+  if (!I) return null;
+  const qualifiedScore =
+    counts[4] >= 6
+      ? 4
+      : counts[3] + counts[4] >= 8
+        ? 3
+        : counts[2] + counts[3] + counts[4] >= 10
+          ? 2
+          : 1;
+  return {
+    distance: R,
+    score: qualifiedScore,
+    rawPeak: J,
+    localizedPeak: J > qualifiedScore,
+    x: al / I,
+    y: cl / I,
+  };
 }
 async function Ld(S, M) {
   if (S.length < 2)
@@ -12856,6 +12875,9 @@ async function Ld(S, M) {
       available: !0,
       distance: Math.round(Z.distance),
       intensity: g0(O.sample.score),
+      intensityDetail: O.sample.localizedPeak
+        ? `Picco ${g0(O.sample.rawPeak)} localizzato, superficie prevalente ${g0(O.sample.score)}`
+        : `Intensità ${g0(O.sample.score)} confermata su una superficie significativa`,
       trend: Sl,
       speed: Sl === "non determinabile" ? null : Math.round(I),
       eta: pl,
@@ -13216,6 +13238,11 @@ function Qd({ title: S, analysis: M }) {
                     "Distanza minima stimata dal telefono: ",
                     f.jsxs("strong", { children: [M.closestApproach, " km"] }),
                   ],
+                }),
+              M.intensityDetail &&
+                f.jsx("p", {
+                  className: "intensityDetail",
+                  children: M.intensityDetail,
                 }),
               f.jsx("p", { children: M.note }),
             ],
@@ -13795,7 +13822,7 @@ function x0() {
           f.jsxs("div", {
             children: [
               f.jsx("h1", { children: "Grandine Alert" }),
-              f.jsx("small", { children: "APP METEO LOCALE · v1.1.3" }),
+              f.jsx("small", { children: "APP METEO LOCALE · v1.1.4" }),
             ],
           }),
           f.jsx("button", {
@@ -13814,10 +13841,10 @@ function x0() {
             f.jsxs("div", {
               children: [
                 f.jsx("small", { children: "AGGIORNAMENTO COMPLETATO" }),
-                f.jsx("strong", { children: "Grandine Alert 1.1.3" }),
+                f.jsx("strong", { children: "Grandine Alert 1.1.4" }),
                 f.jsx("p", {
                   children:
-                    "Obiettivo calcolato dalla traiettoria e freccia posizionata sull’eco radar.",
+                    "Eco sempre visibile e intensità confermata solo su una superficie significativa.",
                 }),
               ],
             }),
@@ -13931,20 +13958,13 @@ function x0() {
                           ],
                         }),
                       Ca &&
-                        f.jsxs("div", {
-                          className: `movementCaption ${Je}`,
-                          children: [
-                            f.jsx("strong", { children: Zn }),
-                            f.jsxs("span", {
-                              children: [
-                                "↗ ",
-                                Kl.direction,
-                                " · immagine ",
-                                Ra(qt),
-                              ],
-                            }),
-                            f.jsx("em", { children: Pn }),
-                          ],
+                        f.jsx("div", {
+                          className: `echoMarker ${Je}`,
+                          style: {
+                            left: `${Kl.echoX ?? 50}%`,
+                            top: `${Kl.echoY ?? 50}%`,
+                          },
+                          "aria-label": "Eco radar analizzato",
                         }),
                       f.jsx("b", {
                         className: "centerDot",
@@ -13952,6 +13972,22 @@ function x0() {
                       }),
                     ],
                   }),
+                  Ca &&
+                    f.jsxs("div", {
+                      className: `trajectoryStrip ${Je}`,
+                      children: [
+                        f.jsx("strong", { children: Zn }),
+                        f.jsxs("span", {
+                          children: [
+                            "↗ ",
+                            Kl.direction,
+                            " · immagine ",
+                            Ra(qt),
+                          ],
+                        }),
+                        f.jsx("em", { children: Pn }),
+                      ],
+                    }),
                   qt
                     ? f.jsxs("div", {
                         className: "radarPlayback",
@@ -14401,7 +14437,7 @@ function x0() {
                 className: "signatureText",
                 children: [
                   f.jsx("strong", { children: "Grandine Alert" }),
-              f.jsx("span", { children: "Versione 1.1.3" }),
+              f.jsx("span", { children: "Versione 1.1.4" }),
                   f.jsx("small", { children: "© 2026 Gabriele Facchini" }),
                 ],
               }),
