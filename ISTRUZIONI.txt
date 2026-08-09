@@ -1,18 +1,29 @@
-GRANDINE ALERT — VERSIONE 0.5 BETA
+GRANDINE ALERT — VERSIONE 0.6 BETA
 
-NOVITÀ
-- Monogramma GF e piè di pagina più compatti.
-- Ridotti gli spazi sopra e sotto la firma per accorciare la pagina.
-- Pulsante pausa/riproduzione nella timeline del radar.
-- Cursore radar trascinabile avanti e indietro con il dito.
-- Toccando o trascinando il cursore, l'animazione si mette in pausa.
-- Premendo ▶, la riproduzione automatica riparte dal fotogramma selezionato.
+NOVITÀ: RADAR INTELLIGENTE
+- Analizza gli echi radar osservati entro 150 km.
+- Stima la distanza dell'eco più vicino.
+- Classifica l'intensità: debole, moderata, forte o molto forte.
+- Confronta le immagini per indicare avvicinamento, stabilità o allontanamento.
+- Indica la direzione stimata del movimento.
+- Mostra un tempo di arrivo indicativo solo quando il movimento è sufficientemente netto.
+- Esegue un'analisi separata per il telefono e per l'auto parcheggiata.
+- Se i dati non bastano, mostra “non determinabile” senza inventare una previsione.
+
+IMPORTANTE
+L'analisi deriva dalle immagini delle precipitazioni. Una cella rossa o viola può
+essere intensa, ma non conferma da sola la presenza di grandine.
 
 AGGIORNAMENTO SU GITHUB
 1. Estrai questo file ZIP.
 2. Apri su GitHub il repository grandine-alert.
 3. Premi Add file > Upload files.
-4. Carica TUTTO il contenuto della cartella Grandine-Alert-0.5-BETA-GitHub
+4. Carica TUTTO il contenuto della cartella Grandine-Alert-0.6-BETA-GitHub
    nella radice del repository, sostituendo i file con lo stesso nome.
 5. Conferma con Commit changes.
 6. Lascia Settings > Pages impostato su main / (root).
+
+DOPO IL CARICAMENTO
+Apri l'app, autorizza la posizione e attendi qualche secondo. Il riquadro
+“Analisi radar automatica” apparirà sotto il radar. Se hai salvato l'auto,
+comparirà un secondo controllo dedicato nella pagina Rischio.
