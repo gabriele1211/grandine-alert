@@ -12652,7 +12652,7 @@ const m0 = Xd(d0),
       return M().catch(C);
     });
   },
-  Nf = "1.1.1",
+  Nf = "1.1.2",
   y0 = (S, M) => {
     const j = S.split(".").map(Number),
       d = M.split(".").map(Number);
@@ -12856,7 +12856,8 @@ const z0 = (S) =>
 function E0({ point: S, frame: M }) {
   const j = w.useRef(null),
     d = w.useRef(null),
-    x = w.useRef(null);
+    x = w.useRef(null),
+    zl = w.useRef(null);
   return (
     w.useEffect(() => {
       if (!j.current || !S) return;
@@ -12892,7 +12893,16 @@ function E0({ point: S, frame: M }) {
                 className: "radarTiles",
                 maxNativeZoom: 6,
                 maxZoom: 19,
-              }).addTo(d.current)));
+              }).addTo(d.current)),
+            (zl.current = N.tileLayer(
+              "https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png",
+              {
+                subdomains: "abcd",
+                zIndex: 8,
+                className: "cityLabelTiles",
+                maxZoom: 20,
+              },
+            ).addTo(d.current)));
           const Z = [50, 100, 150].map((D) =>
               N.circle([S.lat, S.lon], {
                 radius: D * 1e3,
@@ -13126,6 +13136,20 @@ function Qd({ title: S, analysis: M }) {
                     children: [
                       M.direction,
                       f.jsx("small", { children: "direzione stimata" }),
+                    ],
+                  }),
+                  f.jsxs("b", {
+                    className: "targetBox",
+                    children: [
+                      M.trend === "in avvicinamento" &&
+                      M.distance !== null &&
+                      M.distance <= 50
+                        ? "Zona telefono"
+                        : M.trend === "in allontanamento" &&
+                            M.direction !== "non definita"
+                          ? "Verso " + M.direction
+                          : "Da verificare",
+                      f.jsx("small", { children: "obiettivo stimato" }),
                     ],
                   }),
                 ],
@@ -13673,6 +13697,15 @@ function x0() {
         : Kl?.trend === "in avvicinamento"
           ? "Fenomeno in avvicinamento"
           : `Movimento verso ${Kl?.direction ?? "direzione non definita"}`,
+    Pn =
+      Je === "danger"
+        ? "OBIETTIVO STIMATO: ZONA DEL TELEFONO"
+        : Kl?.trend === "in allontanamento" &&
+            Kl?.direction !== "non definita"
+          ? `OBIETTIVO STIMATO: ALTRA ZONA VERSO ${Kl.direction}`
+          : Kl?.trend === "quasi stabile"
+            ? "OBIETTIVO: NESSUNO, FENOMENO QUASI STABILE"
+            : "OBIETTIVO: NON ANCORA DETERMINABILE",
     ci = async () => {
       dt
         ? (await dt.prompt(),
@@ -13704,7 +13737,7 @@ function x0() {
           f.jsxs("div", {
             children: [
               f.jsx("h1", { children: "Grandine Alert" }),
-              f.jsx("small", { children: "APP METEO LOCALE · v1.1.1" }),
+              f.jsx("small", { children: "APP METEO LOCALE · v1.1.2" }),
             ],
           }),
           f.jsx("button", {
@@ -13723,10 +13756,10 @@ function x0() {
             f.jsxs("div", {
               children: [
                 f.jsx("small", { children: "AGGIORNAMENTO COMPLETATO" }),
-                f.jsx("strong", { children: "Grandine Alert 1.1.1" }),
+                f.jsx("strong", { children: "Grandine Alert 1.1.2" }),
                 f.jsx("p", {
                   children:
-                    "Corretta l’orientazione geografica delle frecce senza modificare il radar intelligente.",
+                    "Città più leggibili e obiettivo della traiettoria indicato chiaramente.",
                 }),
               ],
             }),
@@ -13850,6 +13883,7 @@ function x0() {
                                 Ra(qt),
                               ],
                             }),
+                            f.jsx("em", { children: Pn }),
                           ],
                         }),
                       f.jsx("b", {
@@ -14307,7 +14341,7 @@ function x0() {
                 className: "signatureText",
                 children: [
                   f.jsx("strong", { children: "Grandine Alert" }),
-                  f.jsx("span", { children: "Versione 1.1.1" }),
+              f.jsx("span", { children: "Versione 1.1.2" }),
                   f.jsx("small", { children: "© 2026 Gabriele Facchini" }),
                 ],
               }),
@@ -14315,7 +14349,7 @@ function x0() {
           }),
           f.jsx("p", {
             children:
-              "Cartografia © OpenStreetMap · radar RainViewer · previsioni Open-Meteo. Il rischio è una stima e non garantisce presenza o assenza di grandine.",
+              "Cartografia © OpenStreetMap/CARTO · radar RainViewer · previsioni Open-Meteo. Il rischio è una stima e non garantisce presenza o assenza di grandine.",
           }),
         ],
       }),
