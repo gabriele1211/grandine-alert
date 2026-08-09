@@ -12652,7 +12652,7 @@ const m0 = Xd(d0),
       return M().catch(C);
     });
   },
-  Nf = "1.1.2",
+  Nf = "1.1.3",
   y0 = (S, M) => {
     const j = S.split(".").map(Number),
       d = M.split(".").map(Number);
@@ -12767,6 +12767,11 @@ async function Ld(S, M) {
       speed: null,
       eta: null,
       direction: "non definita",
+      target: "non determinabile",
+      closestApproach: null,
+      echoX: null,
+      echoY: null,
+      angle: null,
       peakTime: null,
       note: "Servono almeno due immagini radar.",
     };
@@ -12784,6 +12789,11 @@ async function Ld(S, M) {
         speed: null,
         eta: null,
         direction: "non definita",
+        target: "non determinabile",
+        closestApproach: null,
+        echoX: null,
+        echoY: null,
+        angle: null,
         peakTime: null,
         note: "Nessuna precipitazione significativa rilevata entro 150 km.",
       };
@@ -12804,6 +12814,21 @@ async function Ld(S, M) {
       J = (156.54303392 * Math.cos((M.lat * Math.PI) / 180)) / 64,
       al = Math.max((S.at(-1).time - S[0].time) / 3600, 0.1),
       cl = (D - R) * J,
+      moveX = Z.x - N.x,
+      moveY = Z.y - N.y,
+      movePower = moveX * moveX + moveY * moveY,
+      projection =
+        movePower > 9
+          ? ((b - Z.x) * moveX + (b - Z.y) * moveY) / movePower
+          : -1,
+      closestPixels =
+        projection > 0
+          ? Math.hypot(
+              Z.x + projection * moveX - b,
+              Z.y + projection * moveY - b,
+            )
+          : D,
+      closestApproach = closestPixels * J,
       I = Math.abs(cl) / al,
       Sl =
         d.length < 2
@@ -12813,8 +12838,18 @@ async function Ld(S, M) {
             : cl > 7
               ? "in allontanamento"
               : "quasi stabile",
+      target =
+        d.length < 3 || movePower <= 9
+          ? "non determinabile"
+          : Sl === "in avvicinamento" &&
+              projection > 0 &&
+              closestApproach <= 15
+            ? "telefono"
+            : projection > 0 && closestApproach <= 30
+              ? "passaggio vicino"
+              : "altra zona",
       pl =
-        Sl === "in avvicinamento" && I >= 8
+        target === "telefono" && I >= 8
           ? Math.round((Z.distance / I) * 60)
           : null;
     return {
@@ -12825,6 +12860,12 @@ async function Ld(S, M) {
       speed: Sl === "non determinabile" ? null : Math.round(I),
       eta: pl,
       direction: d.length > 1 ? S0(Z.x - N.x, Z.y - N.y) : "non definita",
+      target,
+      closestApproach: Math.round(closestApproach),
+      echoX: (O.sample.x / 256) * 100,
+      echoY: (O.sample.y / 256) * 100,
+      angle:
+        movePower > 9 ? (Math.atan2(moveY, moveX) * 180) / Math.PI : null,
       peakTime: S[O.index].time,
       note: "Stima automatica ricavata dal movimento delle ultime immagini radar; non conferma da sola la grandine.",
     };
@@ -12837,6 +12878,11 @@ async function Ld(S, M) {
       speed: null,
       eta: null,
       direction: "non definita",
+      target: "non determinabile",
+      closestApproach: null,
+      echoX: null,
+      echoY: null,
+      angle: null,
       peakTime: null,
       note: "Analisi automatica temporaneamente non disponibile.",
     };
@@ -13141,14 +13187,14 @@ function Qd({ title: S, analysis: M }) {
                   f.jsxs("b", {
                     className: "targetBox",
                     children: [
-                      M.trend === "in avvicinamento" &&
-                      M.distance !== null &&
-                      M.distance <= 50
+                      M.target === "telefono"
                         ? "Zona telefono"
-                        : M.trend === "in allontanamento" &&
-                            M.direction !== "non definita"
-                          ? "Verso " + M.direction
-                          : "Da verificare",
+                        : M.target === "passaggio vicino"
+                          ? "Passaggio vicino"
+                          : M.target === "altra zona" &&
+                              M.direction !== "non definita"
+                            ? "Verso " + M.direction
+                            : "Da verificare",
                       f.jsx("small", { children: "obiettivo stimato" }),
                     ],
                   }),
@@ -13160,6 +13206,15 @@ function Qd({ title: S, analysis: M }) {
                   children: [
                     "Arrivo indicativo nella zona: ",
                     f.jsxs("strong", { children: [M.eta, " minuti"] }),
+                  ],
+                }),
+              M.closestApproach !== null &&
+                M.target !== "non determinabile" &&
+                f.jsxs("p", {
+                  className: "trajectoryNote",
+                  children: [
+                    "Distanza minima stimata dal telefono: ",
+                    f.jsxs("strong", { children: [M.closestApproach, " km"] }),
                   ],
                 }),
               f.jsx("p", { children: M.note }),
@@ -13686,22 +13741,25 @@ function x0() {
     Ke = D.length > 1 ? (J / (D.length - 1)) * 100 : 0,
     Ca = !!(qt && Kl?.peakTime === qt.time && Kl.direction !== "non definita"),
     Je =
-      Kl?.trend === "in avvicinamento"
-        ? Kl.distance !== null && Kl.distance <= 50
-          ? "danger"
-          : "approaching"
+      Kl?.target === "telefono"
+        ? "danger"
+        : Kl?.trend === "in avvicinamento"
+          ? "approaching"
         : "observed",
     Zn =
-      Je === "danger"
+      Kl?.target === "telefono"
         ? "Possibile traiettoria verso il telefono"
+        : Kl?.target === "passaggio vicino"
+          ? "Possibile passaggio vicino al telefono"
         : Kl?.trend === "in avvicinamento"
           ? "Fenomeno in avvicinamento"
           : `Movimento verso ${Kl?.direction ?? "direzione non definita"}`,
     Pn =
-      Je === "danger"
+      Kl?.target === "telefono"
         ? "OBIETTIVO STIMATO: ZONA DEL TELEFONO"
-        : Kl?.trend === "in allontanamento" &&
-            Kl?.direction !== "non definita"
+        : Kl?.target === "passaggio vicino"
+          ? "OBIETTIVO: PASSAGGIO VICINO, NON DIRETTO"
+        : Kl?.target === "altra zona" && Kl?.direction !== "non definita"
           ? `OBIETTIVO STIMATO: ALTRA ZONA VERSO ${Kl.direction}`
           : Kl?.trend === "quasi stabile"
             ? "OBIETTIVO: NESSUNO, FENOMENO QUASI STABILE"
@@ -13737,7 +13795,7 @@ function x0() {
           f.jsxs("div", {
             children: [
               f.jsx("h1", { children: "Grandine Alert" }),
-              f.jsx("small", { children: "APP METEO LOCALE · v1.1.2" }),
+              f.jsx("small", { children: "APP METEO LOCALE · v1.1.3" }),
             ],
           }),
           f.jsx("button", {
@@ -13756,10 +13814,10 @@ function x0() {
             f.jsxs("div", {
               children: [
                 f.jsx("small", { children: "AGGIORNAMENTO COMPLETATO" }),
-                f.jsx("strong", { children: "Grandine Alert 1.1.2" }),
+                f.jsx("strong", { children: "Grandine Alert 1.1.3" }),
                 f.jsx("p", {
                   children:
-                    "Città più leggibili e obiettivo della traiettoria indicato chiaramente.",
+                    "Obiettivo calcolato dalla traiettoria e freccia posizionata sull’eco radar.",
                 }),
               ],
             }),
@@ -13863,7 +13921,9 @@ function x0() {
                         f.jsxs("div", {
                           className: `movementArrow ${Je}`,
                           style: {
-                            transform: `translate(-50%,-50%) rotate(${z0(Kl.direction)}deg)`,
+                            left: `${Kl.echoX ?? 50}%`,
+                            top: `${Kl.echoY ?? 50}%`,
+                            transform: `translate(0,-50%) rotate(${Kl.angle ?? z0(Kl.direction)}deg)`,
                           },
                           children: [
                             f.jsx("i", {}),
@@ -14341,7 +14401,7 @@ function x0() {
                 className: "signatureText",
                 children: [
                   f.jsx("strong", { children: "Grandine Alert" }),
-              f.jsx("span", { children: "Versione 1.1.2" }),
+              f.jsx("span", { children: "Versione 1.1.3" }),
                   f.jsx("small", { children: "© 2026 Gabriele Facchini" }),
                 ],
               }),
