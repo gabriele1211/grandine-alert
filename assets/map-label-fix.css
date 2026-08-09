@@ -1,0 +1,8 @@
+.leafletRadar .cityLabelTiles {
+  display: none !important;
+}
+
+.leafletRadar .baseMapTiles {
+  filter: grayscale(1) invert(1) brightness(1.38) contrast(1.08);
+  opacity: 0.84;
+}

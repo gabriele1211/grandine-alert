@@ -12652,7 +12652,7 @@ const m0 = Xd(d0),
       return M().catch(C);
     });
   },
-  Nf = "1.1.4",
+  Nf = "1.1.5",
   y0 = (S, M) => {
     const j = S.split(".").map(Number),
       d = M.split(".").map(Number);
@@ -12924,8 +12924,7 @@ const z0 = (S) =>
 function E0({ point: S, frame: M }) {
   const j = w.useRef(null),
     d = w.useRef(null),
-    x = w.useRef(null),
-    zl = w.useRef(null);
+    x = w.useRef(null);
   return (
     w.useEffect(() => {
       if (!j.current || !S) return;
@@ -12961,16 +12960,7 @@ function E0({ point: S, frame: M }) {
                 className: "radarTiles",
                 maxNativeZoom: 6,
                 maxZoom: 19,
-              }).addTo(d.current)),
-            (zl.current = N.tileLayer(
-              "https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png",
-              {
-                subdomains: "abcd",
-                zIndex: 8,
-                className: "cityLabelTiles",
-                maxZoom: 20,
-              },
-            ).addTo(d.current)));
+              }).addTo(d.current)));
           const Z = [50, 100, 150].map((D) =>
               N.circle([S.lat, S.lon], {
                 radius: D * 1e3,
@@ -13822,7 +13812,7 @@ function x0() {
           f.jsxs("div", {
             children: [
               f.jsx("h1", { children: "Grandine Alert" }),
-              f.jsx("small", { children: "APP METEO LOCALE · v1.1.4" }),
+              f.jsx("small", { children: "APP METEO LOCALE · v1.1.5" }),
             ],
           }),
           f.jsx("button", {
@@ -13841,10 +13831,10 @@ function x0() {
             f.jsxs("div", {
               children: [
                 f.jsx("small", { children: "AGGIORNAMENTO COMPLETATO" }),
-                f.jsx("strong", { children: "Grandine Alert 1.1.4" }),
+                f.jsx("strong", { children: "Grandine Alert 1.1.5" }),
                 f.jsx("p", {
                   children:
-                    "Eco sempre visibile e intensità confermata solo su una superficie significativa.",
+                    "Cartina dinamica senza nomi sovrapposti e località mostrate nella lingua locale.",
                 }),
               ],
             }),
@@ -14437,7 +14427,7 @@ function x0() {
                 className: "signatureText",
                 children: [
                   f.jsx("strong", { children: "Grandine Alert" }),
-              f.jsx("span", { children: "Versione 1.1.4" }),
+              f.jsx("span", { children: "Versione 1.1.5" }),
                   f.jsx("small", { children: "© 2026 Gabriele Facchini" }),
                 ],
               }),
@@ -14445,7 +14435,7 @@ function x0() {
           }),
           f.jsx("p", {
             children:
-              "Cartografia © OpenStreetMap/CARTO · radar RainViewer · previsioni Open-Meteo. Il rischio è una stima e non garantisce presenza o assenza di grandine.",
+              "Cartografia © OpenStreetMap · radar RainViewer · previsioni Open-Meteo. Il rischio è una stima e non garantisce presenza o assenza di grandine.",
           }),
         ],
       }),

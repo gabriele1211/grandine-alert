@@ -1,4 +1,4 @@
-const CACHE="grandine-alert-version-1-1-4";
+const CACHE="grandine-alert-version-1-1-5";
 const APP_SHELL=["./","./manifest.webmanifest","./version.json","./icons/grandine-icon-192.png","./icons/grandine-icon-512.png"];
 self.addEventListener("install",event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(APP_SHELL)));self.skipWaiting()});
 self.addEventListener("activate",event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith("grandine-alert-")&&key!==CACHE).map(key=>caches.delete(key)))));self.clients.claim()});
