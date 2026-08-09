@@ -1,5 +1,5 @@
 {
-  "latest": "1.8.0",
-  "label": "Versione 1.8 Beta",
-  "message": "Nuovo fascio radar ottico: evidenzia cartina, città ed echi senza coprire ciò che attraversa."
+  "latest": "1.9.0",
+  "label": "Versione 1.9 Beta",
+  "message": "Il fascio compie un giro completo, rallenta e si ferma brevemente sul fenomeno analizzato."
 }
