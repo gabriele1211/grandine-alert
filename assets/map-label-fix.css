@@ -55,27 +55,3 @@
     grid-column: 1;
   }
 }
-
-.hero.hasTrajectory {
-  min-height: calc(var(--radar-top) + var(--radar-size) + 155px);
-}
-
-.hero.hasTrajectory .trajectoryStrip {
-  position: absolute;
-  z-index: 8;
-  left: 50%;
-  top: calc(var(--radar-top) + var(--radar-size) + 7px);
-  width: min(86%, 400px);
-  margin: 0;
-  transform: translateX(-50%);
-  padding: 7px 10px;
-}
-
-.hero.hasTrajectory .trajectoryStrip strong {
-  font-size: 11px;
-}
-
-.hero.hasTrajectory .trajectoryStrip span,
-.hero.hasTrajectory .trajectoryStrip em {
-  font-size: 8px;
-}

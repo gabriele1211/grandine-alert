@@ -12652,7 +12652,7 @@ const m0 = Xd(d0),
       return M().catch(C);
     });
   },
-  Nf = "1.1.7",
+  Nf = "1.1.8",
   y0 = (S, M) => {
     const j = S.split(".").map(Number),
       d = M.split(".").map(Number);
@@ -13012,16 +13012,25 @@ function E0({ point: S, frame: M }) {
                   countryContains(J, S.lon, S.lat),
                 );
                 R &&
+                  (N.geoJSON(R, {
+                    interactive: !1,
+                    style: {
+                      color: "#00151d",
+                      weight: 6,
+                      opacity: 0.82,
+                      fillOpacity: 0,
+                    },
+                  }).addTo(d.current),
                   N.geoJSON(R, {
                     interactive: !1,
                     style: {
-                      color: "#67fff3",
-                      weight: 1.6,
-                      opacity: 0.68,
+                      color: "#70fff4",
+                      weight: 2.7,
+                      opacity: 1,
                       fillColor: "#1fe0d1",
                       fillOpacity: 0.018,
                     },
-                  }).addTo(d.current);
+                  }).addTo(d.current));
               })
               .catch(() => {}),
             setTimeout(() => {
@@ -13872,7 +13881,7 @@ function x0() {
           f.jsxs("div", {
             children: [
               f.jsx("h1", { children: "Grandine Alert" }),
-              f.jsx("small", { children: "APP METEO LOCALE · v1.1.7" }),
+              f.jsx("small", { children: "APP METEO LOCALE · v1.1.8" }),
             ],
           }),
           f.jsx("button", {
@@ -13891,10 +13900,10 @@ function x0() {
             f.jsxs("div", {
               children: [
                 f.jsx("small", { children: "AGGIORNAMENTO COMPLETATO" }),
-                f.jsx("strong", { children: "Grandine Alert 1.1.7" }),
+                f.jsx("strong", { children: "Grandine Alert 1.1.8" }),
                 f.jsx("p", {
                   children:
-                    "Confine più discreto, freccia coerente e informazioni collocate sotto il radar.",
+                    "Confini nazionali più visibili e rimosso il messaggio duplicato sotto il radar.",
                 }),
               ],
             }),
@@ -13955,7 +13964,7 @@ function x0() {
             className: "appPage radarPage",
             children: [
               f.jsxs("section", {
-                className: `hero ${Ca ? "hasTrajectory" : ""}`,
+                className: "hero",
                 children: [
                   f.jsxs("div", {
                     className: "heroCopy",
@@ -14022,22 +14031,6 @@ function x0() {
                       }),
                     ],
                   }),
-                  Ca &&
-                    f.jsxs("div", {
-                      className: `trajectoryStrip ${Je}`,
-                      children: [
-                        f.jsx("strong", { children: Zn }),
-                        f.jsxs("span", {
-                          children: [
-                            "↗ ",
-                            Kl.direction,
-                            " · immagine ",
-                            Ra(qt),
-                          ],
-                        }),
-                        f.jsx("em", { children: Pn }),
-                      ],
-                    }),
                   qt
                     ? f.jsxs("div", {
                         className: "radarPlayback",
@@ -14487,7 +14480,7 @@ function x0() {
                 className: "signatureText",
                 children: [
                   f.jsx("strong", { children: "Grandine Alert" }),
-              f.jsx("span", { children: "Versione 1.1.7" }),
+              f.jsx("span", { children: "Versione 1.1.8" }),
                   f.jsx("small", { children: "© 2026 Gabriele Facchini" }),
                 ],
               }),
