@@ -12652,7 +12652,7 @@ const m0 = Xd(d0),
       return M().catch(C);
     });
   },
-  Nf = "1.1.6",
+  Nf = "1.1.7",
   y0 = (S, M) => {
     const j = S.split(".").map(Number),
       d = M.split(".").map(Number);
@@ -13016,11 +13016,10 @@ function E0({ point: S, frame: M }) {
                     interactive: !1,
                     style: {
                       color: "#67fff3",
-                      weight: 3,
-                      opacity: 0.95,
-                      dashArray: "9 5",
+                      weight: 1.6,
+                      opacity: 0.68,
                       fillColor: "#1fe0d1",
-                      fillOpacity: 0.035,
+                      fillOpacity: 0.018,
                     },
                   }).addTo(d.current);
               })
@@ -13805,7 +13804,19 @@ function x0() {
           })
         : "--:--",
     Ke = D.length > 1 ? (J / (D.length - 1)) * 100 : 0,
-    Ca = !!(qt && Kl?.peakTime === qt.time && Kl.direction !== "non definita"),
+    Ca = !!(
+      qt &&
+      Kl?.peakTime === qt.time &&
+      Kl.direction !== "non definita" &&
+      Kl.trend !== "quasi stabile" &&
+      Kl.trend !== "non determinabile"
+    ),
+    Xa = !!(
+      qt &&
+      Kl?.peakTime === qt.time &&
+      Kl.echoX !== null &&
+      Kl.echoY !== null
+    ),
     Je =
       Kl?.target === "telefono"
         ? "danger"
@@ -13861,7 +13872,7 @@ function x0() {
           f.jsxs("div", {
             children: [
               f.jsx("h1", { children: "Grandine Alert" }),
-              f.jsx("small", { children: "APP METEO LOCALE · v1.1.6" }),
+              f.jsx("small", { children: "APP METEO LOCALE · v1.1.7" }),
             ],
           }),
           f.jsx("button", {
@@ -13880,10 +13891,10 @@ function x0() {
             f.jsxs("div", {
               children: [
                 f.jsx("small", { children: "AGGIORNAMENTO COMPLETATO" }),
-                f.jsx("strong", { children: "Grandine Alert 1.1.6" }),
+                f.jsx("strong", { children: "Grandine Alert 1.1.7" }),
                 f.jsx("p", {
                   children:
-                    "Radar intelligente più compatto e confine nazionale evidenziato dinamicamente.",
+                    "Confine più discreto, freccia coerente e informazioni collocate sotto il radar.",
                 }),
               ],
             }),
@@ -13944,7 +13955,7 @@ function x0() {
             className: "appPage radarPage",
             children: [
               f.jsxs("section", {
-                className: "hero",
+                className: `hero ${Ca ? "hasTrajectory" : ""}`,
                 children: [
                   f.jsxs("div", {
                     className: "heroCopy",
@@ -13996,7 +14007,7 @@ function x0() {
                             f.jsx("b", { children: "➤" }),
                           ],
                         }),
-                      Ca &&
+                      Xa &&
                         f.jsx("div", {
                           className: `echoMarker ${Je}`,
                           style: {
@@ -14476,7 +14487,7 @@ function x0() {
                 className: "signatureText",
                 children: [
                   f.jsx("strong", { children: "Grandine Alert" }),
-              f.jsx("span", { children: "Versione 1.1.6" }),
+              f.jsx("span", { children: "Versione 1.1.7" }),
                   f.jsx("small", { children: "© 2026 Gabriele Facchini" }),
                 ],
               }),
