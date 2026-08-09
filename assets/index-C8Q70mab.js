@@ -12652,7 +12652,7 @@ const m0 = Xd(d0),
       return M().catch(C);
     });
   },
-  Nf = "1.1.5",
+  Nf = "1.1.6",
   y0 = (S, M) => {
     const j = S.split(".").map(Number),
       d = M.split(".").map(Number);
@@ -12921,6 +12921,25 @@ const z0 = (S) =>
     ovest: 180,
     "nord-ovest": 225,
   })[S] ?? 0;
+function countryContains(S, M, j) {
+  const d = (C) => {
+    let N = !1;
+    for (let Z = 0, O = C.length - 1; Z < C.length; O = Z++) {
+      const b = C[Z][0],
+        D = C[Z][1],
+        R = C[O][0],
+        J = C[O][1];
+      D > j != J > j && M < ((R - b) * (j - D)) / (J - D) + b && (N = !N);
+    }
+    return N;
+  };
+  const x = S?.geometry;
+  return x?.type === "Polygon"
+    ? d(x.coordinates[0])
+    : x?.type === "MultiPolygon"
+      ? x.coordinates.some((C) => d(C[0]))
+      : !1;
+}
 function E0({ point: S, frame: M }) {
   const j = w.useRef(null),
     d = w.useRef(null),
@@ -12985,6 +13004,27 @@ function E0({ point: S, frame: M }) {
               }),
             }).addTo(d.current);
           }),
+            fetch("./assets/countries-110m.geojson")
+              .then((D) => D.json())
+              .then((D) => {
+                if (C || !d.current) return;
+                const R = D.features?.find((J) =>
+                  countryContains(J, S.lon, S.lat),
+                );
+                R &&
+                  N.geoJSON(R, {
+                    interactive: !1,
+                    style: {
+                      color: "#67fff3",
+                      weight: 3,
+                      opacity: 0.95,
+                      dashArray: "9 5",
+                      fillColor: "#1fe0d1",
+                      fillOpacity: 0.035,
+                    },
+                  }).addTo(d.current);
+              })
+              .catch(() => {}),
             setTimeout(() => {
               (d.current?.invalidateSize(),
                 d.current?.fitBounds(Z[2].getBounds(), {
@@ -13155,15 +13195,19 @@ function A0({ items: S }) {
 }
 function Qd({ title: S, analysis: M }) {
   return f.jsxs("section", {
-    className: "radarInsight",
+    className: `radarInsight ${M?.distance === null ? "empty" : ""}`,
     children: [
       f.jsxs("div", {
         className: "radarInsightHead",
         children: [
           f.jsxs("div", {
             children: [
-              f.jsx("small", { children: "ANALISI RADAR AUTOMATICA" }),
-              f.jsx("h3", { children: S }),
+              M?.distance !== null &&
+                f.jsx("small", { children: "ANALISI RADAR AUTOMATICA" }),
+              f.jsx("h3", {
+                children:
+                  M?.distance === null ? "Nessun fenomeno rilevato" : S,
+              }),
             ],
           }),
           f.jsx("span", {
@@ -13173,7 +13217,12 @@ function Qd({ title: S, analysis: M }) {
         ],
       }),
       M
-        ? f.jsxs(f.Fragment, {
+        ? M.distance === null
+          ? f.jsx("p", {
+              className: "emptyRadarText",
+              children: "Nessun eco significativo rilevato entro 150 km.",
+            })
+          : f.jsxs(f.Fragment, {
             children: [
               f.jsxs("div", {
                 className: "radarInsightGrid",
@@ -13236,7 +13285,7 @@ function Qd({ title: S, analysis: M }) {
                 }),
               f.jsx("p", { children: M.note }),
             ],
-          })
+            })
         : f.jsx("p", { children: "Confronto delle immagini radar in corso…" }),
     ],
   });
@@ -13812,7 +13861,7 @@ function x0() {
           f.jsxs("div", {
             children: [
               f.jsx("h1", { children: "Grandine Alert" }),
-              f.jsx("small", { children: "APP METEO LOCALE · v1.1.5" }),
+              f.jsx("small", { children: "APP METEO LOCALE · v1.1.6" }),
             ],
           }),
           f.jsx("button", {
@@ -13831,10 +13880,10 @@ function x0() {
             f.jsxs("div", {
               children: [
                 f.jsx("small", { children: "AGGIORNAMENTO COMPLETATO" }),
-                f.jsx("strong", { children: "Grandine Alert 1.1.5" }),
+                f.jsx("strong", { children: "Grandine Alert 1.1.6" }),
                 f.jsx("p", {
                   children:
-                    "Cartina dinamica senza nomi sovrapposti e località mostrate nella lingua locale.",
+                    "Radar intelligente più compatto e confine nazionale evidenziato dinamicamente.",
                 }),
               ],
             }),
@@ -14427,7 +14476,7 @@ function x0() {
                 className: "signatureText",
                 children: [
                   f.jsx("strong", { children: "Grandine Alert" }),
-              f.jsx("span", { children: "Versione 1.1.5" }),
+              f.jsx("span", { children: "Versione 1.1.6" }),
                   f.jsx("small", { children: "© 2026 Gabriele Facchini" }),
                 ],
               }),
