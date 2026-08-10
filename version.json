@@ -1,5 +1,5 @@
 {
-  "latest": "1.1.19",
-  "label": "Versione 1.1.19",
-  "message": "Riconoscimento per celle radar: cerchio, intensità, distanza e freccia riferiti allo stesso fenomeno."
+  "latest": "1.1.20",
+  "label": "Versione 1.1.20",
+  "message": "Cerchio e freccia ora usano gli stessi pixel radar mostrati sulla cartina."
 }
