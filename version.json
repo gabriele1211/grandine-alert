@@ -1,5 +1,5 @@
 {
-  "latest": "1.1.10",
-  "label": "Versione 1.1.10",
-  "message": "Colorazione dinamica applicata soltanto al mare, senza modificare il terreno."
+  "latest": "1.1.11",
+  "label": "Versione 1.1.11",
+  "message": "Il radar distingue telefono e auto parcheggiata e segnala con priorità gli echi intensi diretti verso uno dei due punti."
 }

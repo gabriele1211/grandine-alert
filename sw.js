@@ -1,5 +1,5 @@
-const CACHE="grandine-alert-version-1-1-10-water-only";
-const APP_SHELL=["./","./manifest.webmanifest","./version.json","./assets/index-v1.1.10.js","./assets/index-v1.1.10.css","./assets/leaflet-v1.1.10.js","./assets/map-label-fix.css?v=1.1.10","./assets/countries-110m.geojson","./icons/grandine-icon-192.png","./icons/grandine-icon-512.png"];
+const CACHE="grandine-alert-version-1-1-11-phone-car";
+const APP_SHELL=["./","./manifest.webmanifest","./version.json","./assets/index-v1.1.11.js","./assets/index-v1.1.11.css","./assets/leaflet-v1.1.11.js","./assets/map-label-fix.css?v=1.1.11","./assets/countries-110m.geojson","./icons/grandine-icon-192.png","./icons/grandine-icon-512.png"];
 self.addEventListener("install",event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(APP_SHELL)));self.skipWaiting()});
 self.addEventListener("activate",event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith("grandine-alert-")&&key!==CACHE).map(key=>caches.delete(key)))));self.clients.claim()});
 self.addEventListener("fetch",event=>{
