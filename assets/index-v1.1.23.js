@@ -12652,7 +12652,7 @@ const m0 = Xd(d0),
       return M().catch(C);
     });
   },
-  Nf = "1.1.23",
+  Nf = "1.1.24",
   y0 = (S, M) => {
     const j = S.split(".").map(Number),
       d = M.split(".").map(Number);
@@ -14275,7 +14275,7 @@ function x0() {
           f.jsxs("div", {
             children: [
               f.jsx("h1", { children: "Grandine Alert" }),
-              f.jsx("small", { children: "APP METEO LOCALE · v1.1.23" }),
+              f.jsx("small", { children: "APP METEO LOCALE · v1.1.24" }),
             ],
           }),
           f.jsx("button", {
@@ -14300,7 +14300,7 @@ function x0() {
             f.jsxs("div", {
               children: [
                 f.jsx("small", { children: "AGGIORNAMENTO COMPLETATO" }),
-                f.jsx("strong", { children: "Grandine Alert 1.1.23" }),
+                f.jsx("strong", { children: "Grandine Alert 1.1.24" }),
                 f.jsx("p", {
                   children:
                     "Cerchio e freccia ora coincidono con gli stessi pixel radar mostrati sulla cartina.",
@@ -14599,8 +14599,8 @@ function x0() {
               f.jsxs("div", {
                 className: "pageHeading",
                 children: [
-                  f.jsx("small", { children: "PREVISIONE LOCALE" }),
-                  f.jsx("h2", { children: "Rischio grandine" }),
+                  f.jsx("small", { children: "VALUTAZIONE METEO LOCALE" }),
+                  f.jsx("h2", { children: "Valutazione grandine" }),
                   f.jsx("p", {
                     children:
                       "Previsione dei modelli e osservazione radar, mostrate separatamente.",
@@ -14972,7 +14972,7 @@ function x0() {
                 className: "signatureText",
                 children: [
                   f.jsx("strong", { children: "Grandine Alert" }),
-              f.jsx("span", { children: "Versione 1.1.23" }),
+              f.jsx("span", { children: "Versione 1.1.24" }),
                   f.jsx("small", { children: "© 2026 Gabriele Facchini" }),
                 ],
               }),
