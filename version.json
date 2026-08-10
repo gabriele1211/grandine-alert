@@ -1,5 +1,5 @@
 {
-  "latest": "1.1.20",
-  "label": "Versione 1.1.20",
-  "message": "Cerchio e freccia ora usano gli stessi pixel radar mostrati sulla cartina."
+  "latest": "1.1.22",
+  "label": "Versione 1.1.22",
+  "message": "Il radar dà priorità al fenomeno più vicino e con traiettoria più pericolosa."
 }
