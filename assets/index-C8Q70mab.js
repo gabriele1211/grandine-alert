@@ -12652,7 +12652,7 @@ const m0 = Xd(d0),
       return M().catch(C);
     });
   },
-  Nf = "1.1.9",
+  Nf = "1.1.10",
   y0 = (S, M) => {
     const j = S.split(".").map(Number),
       d = M.split(".").map(Number);
@@ -12968,6 +12968,9 @@ function E0({ point: S, frame: M }) {
             zoomSnap: 0.1,
             zoomAnimation: !1,
           }).setView([S.lat, S.lon], 6)),
+            d.current.createPane("waterPane"),
+            (d.current.getPane("waterPane").style.zIndex = "230"),
+            (d.current.getPane("waterPane").style.pointerEvents = "none"),
             N.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
               maxZoom: 19,
               className: "baseMapTiles",
@@ -13008,6 +13011,36 @@ function E0({ point: S, frame: M }) {
               .then((D) => D.json())
               .then((D) => {
                 if (C || !d.current) return;
+                const waterHoles = (D.features ?? []).flatMap((J) => {
+                    const featureGeometry = J?.geometry;
+                    if (featureGeometry?.type === "Polygon")
+                      return [featureGeometry.coordinates[0]];
+                    if (featureGeometry?.type === "MultiPolygon")
+                      return featureGeometry.coordinates.map((part) => part[0]);
+                    return [];
+                  }),
+                  waterMask = [
+                    [
+                      [-85, -180],
+                      [-85, 180],
+                      [85, 180],
+                      [85, -180],
+                      [-85, -180],
+                    ],
+                    ...waterHoles.map((ring) =>
+                      ring.map(([lon, lat]) => [lat, lon]),
+                    ),
+                  ];
+                N.polygon(waterMask, {
+                  pane: "waterPane",
+                  interactive: !1,
+                  stroke: !1,
+                  fill: !0,
+                  fillColor: "#33798a",
+                  fillOpacity: 0.27,
+                  fillRule: "evenodd",
+                  className: "dynamicSeaMask",
+                }).addTo(d.current);
                 const R = D.features?.find((J) =>
                   countryContains(J, S.lon, S.lat),
                 );
@@ -13881,7 +13914,7 @@ function x0() {
           f.jsxs("div", {
             children: [
               f.jsx("h1", { children: "Grandine Alert" }),
-              f.jsx("small", { children: "APP METEO LOCALE · v1.1.9" }),
+              f.jsx("small", { children: "APP METEO LOCALE · v1.1.10" }),
             ],
           }),
           f.jsx("button", {
@@ -13900,10 +13933,10 @@ function x0() {
             f.jsxs("div", {
               children: [
                 f.jsx("small", { children: "AGGIORNAMENTO COMPLETATO" }),
-                f.jsx("strong", { children: "Grandine Alert 1.1.9" }),
+                f.jsx("strong", { children: "Grandine Alert 1.1.10" }),
                 f.jsx("p", {
                   children:
-                    "Previsione dei modelli e situazione osservata dal radar ora sono mostrate separatamente.",
+                    "Mare colorato con una maschera separata; terreno e cartografia restano quelli della versione 1.1.9.",
                 }),
               ],
             }),
@@ -14561,7 +14594,7 @@ function x0() {
                 className: "signatureText",
                 children: [
                   f.jsx("strong", { children: "Grandine Alert" }),
-              f.jsx("span", { children: "Versione 1.1.9" }),
+              f.jsx("span", { children: "Versione 1.1.10" }),
                   f.jsx("small", { children: "© 2026 Gabriele Facchini" }),
                 ],
               }),
