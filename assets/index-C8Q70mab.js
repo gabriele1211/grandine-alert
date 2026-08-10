@@ -12652,7 +12652,7 @@ const m0 = Xd(d0),
       return M().catch(C);
     });
   },
-  Nf = "1.1.10",
+  Nf = "1.1.9",
   y0 = (S, M) => {
     const j = S.split(".").map(Number),
       d = M.split(".").map(Number);
@@ -13881,7 +13881,7 @@ function x0() {
           f.jsxs("div", {
             children: [
               f.jsx("h1", { children: "Grandine Alert" }),
-              f.jsx("small", { children: "APP METEO LOCALE · v1.1.10" }),
+              f.jsx("small", { children: "APP METEO LOCALE · v1.1.9" }),
             ],
           }),
           f.jsx("button", {
@@ -13900,10 +13900,10 @@ function x0() {
             f.jsxs("div", {
               children: [
                 f.jsx("small", { children: "AGGIORNAMENTO COMPLETATO" }),
-                f.jsx("strong", { children: "Grandine Alert 1.1.10" }),
+                f.jsx("strong", { children: "Grandine Alert 1.1.9" }),
                 f.jsx("p", {
                   children:
-                    "Mare blu-grigio dinamico, territorio più distinto ed echi radar più riconoscibili.",
+                    "Previsione dei modelli e situazione osservata dal radar ora sono mostrate separatamente.",
                 }),
               ],
             }),
@@ -14561,7 +14561,7 @@ function x0() {
                 className: "signatureText",
                 children: [
                   f.jsx("strong", { children: "Grandine Alert" }),
-              f.jsx("span", { children: "Versione 1.1.10" }),
+              f.jsx("span", { children: "Versione 1.1.9" }),
                   f.jsx("small", { children: "© 2026 Gabriele Facchini" }),
                 ],
               }),
