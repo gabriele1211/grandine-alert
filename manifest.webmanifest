@@ -1,6 +1,6 @@
 {
   "name": "Grandine Alert",
-  "short_name": "Grandine",
+  "short_name": "Grandine Alert",
   "description": "Radar locale e stima del rischio grandine nelle prossime ore.",
   "start_url": "./",
   "scope": "./",
