@@ -12652,7 +12652,7 @@ const m0 = Xd(d0),
       return M().catch(C);
     });
   },
-  Nf = "1.1.8",
+  Nf = "1.1.9",
   y0 = (S, M) => {
     const j = S.split(".").map(Number),
       d = M.split(".").map(Number);
@@ -13472,7 +13472,7 @@ async function Pa(S) {
         }
       : {
           level: "basso",
-          title: "Nessun rischio concreto rilevato",
+          title: "Rischio basso secondo i modelli",
           detail:
             "I modelli non mostrano condizioni favorevoli alla grandine nelle prossime ore.",
           ...hl,
@@ -13881,7 +13881,7 @@ function x0() {
           f.jsxs("div", {
             children: [
               f.jsx("h1", { children: "Grandine Alert" }),
-              f.jsx("small", { children: "APP METEO LOCALE · v1.1.8" }),
+              f.jsx("small", { children: "APP METEO LOCALE · v1.1.9" }),
             ],
           }),
           f.jsx("button", {
@@ -13900,10 +13900,10 @@ function x0() {
             f.jsxs("div", {
               children: [
                 f.jsx("small", { children: "AGGIORNAMENTO COMPLETATO" }),
-                f.jsx("strong", { children: "Grandine Alert 1.1.8" }),
+                f.jsx("strong", { children: "Grandine Alert 1.1.9" }),
                 f.jsx("p", {
                   children:
-                    "Confini nazionali più visibili e rimosso il messaggio duplicato sotto il radar.",
+                    "Previsione dei modelli e situazione osservata dal radar ora sono mostrate separatamente.",
                 }),
               ],
             }),
@@ -14220,7 +14220,7 @@ function x0() {
                   f.jsx("h2", { children: "Rischio grandine" }),
                   f.jsx("p", {
                     children:
-                      "Modelli e condizioni previste nelle prossime quattro ore.",
+                      "Previsione dei modelli e osservazione radar, mostrate separatamente.",
                   }),
                 ],
               }),
@@ -14230,7 +14230,7 @@ function x0() {
                   N &&
                     f.jsxs("div", {
                       className: "riskGauge",
-                      "aria-label": `Indice di rischio ${N.score} su 100`,
+                      "aria-label": `Indice previsto dai modelli ${N.score} su 100`,
                       children: [
                         f.jsx("div", {
                           className: "gaugeArc",
@@ -14281,6 +14281,87 @@ function x0() {
                       N?.detail ??
                       "Autorizza la posizione per eseguire il primo controllo.",
                   }),
+                  N &&
+                    f.jsxs("section", {
+                      className: `riskRadarSummary ${
+                        Kl?.target === "telefono"
+                          ? "danger"
+                          : Kl?.trend === "in avvicinamento"
+                            ? "approaching"
+                            : Kl?.distance === null
+                              ? "clear"
+                              : "observed"
+                      }`,
+                      children: [
+                        f.jsxs("div", {
+                          className: "riskRadarSummaryHead",
+                          children: [
+                            f.jsxs("div", {
+                              children: [
+                                f.jsx("small", { children: "RADAR OSSERVATO" }),
+                                f.jsx("strong", {
+                                  children: Kl
+                                    ? Kl.distance === null
+                                      ? "Nessun eco significativo"
+                                      : Kl.target === "telefono"
+                                        ? "Possibile traiettoria verso il telefono"
+                                        : Kl.trend === "in avvicinamento"
+                                          ? "Fenomeno in avvicinamento"
+                                          : "Fenomeno presente nella zona"
+                                    : "Analisi radar in corso…",
+                                }),
+                              ],
+                            }),
+                            f.jsx("span", {
+                              children: Kl
+                                ? Kl.intensity.toUpperCase()
+                                : "IN ANALISI",
+                            }),
+                          ],
+                        }),
+                        Kl?.distance !== null && Kl
+                          ? f.jsxs("div", {
+                              className: "riskRadarFacts",
+                              children: [
+                                f.jsxs("b", {
+                                  children: [
+                                    Kl.distance + " km",
+                                    f.jsx("small", { children: "distanza eco" }),
+                                  ],
+                                }),
+                                f.jsxs("b", {
+                                  children: [
+                                    Kl.trend,
+                                    f.jsx("small", { children: "tendenza" }),
+                                  ],
+                                }),
+                                f.jsxs("b", {
+                                  children: [
+                                    Kl.target === "telefono"
+                                      ? "Zona telefono"
+                                      : Kl.target === "passaggio vicino"
+                                        ? "Passaggio vicino"
+                                        : Kl.target === "altra zona"
+                                          ? "Altra zona"
+                                          : "Da verificare",
+                                    f.jsx("small", { children: "obiettivo stimato" }),
+                                  ],
+                                }),
+                              ],
+                            })
+                          : f.jsx("p", {
+                              children: Kl
+                                ? "Il radar non rileva precipitazioni significative entro 150 km."
+                                : "Sto confrontando le ultime immagini disponibili.",
+                            }),
+                        Kl?.target === "telefono" &&
+                          f.jsx("p", {
+                            className: "radarPriorityWarning",
+                            children:
+                              "⚠ Osservazione radar prioritaria: controlla la pagina Radar. Il punteggio sopra considera soltanto i modelli previsionali.",
+                          }),
+                      ],
+                    }),
                   N &&
                     f.jsxs(f.Fragment, {
                       children: [
@@ -14480,7 +14561,7 @@ function x0() {
                 className: "signatureText",
                 children: [
                   f.jsx("strong", { children: "Grandine Alert" }),
-              f.jsx("span", { children: "Versione 1.1.8" }),
+              f.jsx("span", { children: "Versione 1.1.9" }),
                   f.jsx("small", { children: "© 2026 Gabriele Facchini" }),
                 ],
               }),
