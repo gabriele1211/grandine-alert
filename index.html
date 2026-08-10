@@ -12,9 +12,27 @@
     <link rel="icon" type="image/svg+xml" href="./icons/app-icon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="./icons/grandine-alert-apple-v3.png" />
     <title>Grandine Alert</title>
-    <script type="module" crossorigin src="./assets/index-v1.1.11.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-v1.1.11.css">
-  <link rel="stylesheet" href="./assets/map-label-fix.css?v=1.1.11">
+    <script>
+      (() => {
+        const params = new URLSearchParams(location.search);
+        if (!params.has("force-update") && !params.has("update")) return;
+        window.__grandineUpdating = true;
+        const target = params.get("force-update") || params.get("update") || "1.1.13";
+        Promise.all([
+          "caches" in window
+            ? caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith("grandine-alert-")).map(key => caches.delete(key))))
+            : Promise.resolve(),
+          "serviceWorker" in navigator
+            ? navigator.serviceWorker.getRegistrations().then(items => Promise.all(items.map(item => item.unregister())))
+            : Promise.resolve()
+        ]).finally(() => location.replace(`./?updated=${encodeURIComponent(target)}&t=${Date.now()}`));
+      })();
+    </script>
+    <script type="module">
+      if (!window.__grandineUpdating) import("./assets/index-v1.1.13.js");
+    </script>
+  <link rel="stylesheet" crossorigin href="./assets/index-v1.1.13.css">
+  <link rel="stylesheet" href="./assets/map-label-fix.css?v=1.1.13">
   </head>
   <body><div id="root"></div></body>
 </html>

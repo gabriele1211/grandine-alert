@@ -1,5 +1,5 @@
 {
-  "latest": "1.1.11",
-  "label": "Versione 1.1.11",
-  "message": "Il radar distingue telefono e auto parcheggiata e segnala con priorità gli echi intensi diretti verso uno dei due punti."
+  "latest": "1.1.13",
+  "label": "Versione 1.1.13",
+  "message": "Intestazioni più compatte e pagina Rischio alleggerita, mantenendo gli avvisi distinti per telefono e auto."
 }
