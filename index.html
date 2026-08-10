@@ -17,7 +17,7 @@
         const params = new URLSearchParams(location.search);
         if (!params.has("force-update") && !params.has("update")) return;
         window.__grandineUpdating = true;
-        const target = params.get("force-update") || params.get("update") || "1.1.15";
+        const target = params.get("force-update") || params.get("update") || "1.1.16";
         Promise.all([
           "caches" in window
             ? caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith("grandine-alert-")).map(key => caches.delete(key))))
@@ -29,10 +29,10 @@
       })();
     </script>
     <script type="module">
-      if (!window.__grandineUpdating) import("./assets/index-v1.1.15.js");
+      if (!window.__grandineUpdating) import("./assets/index-v1.1.16.js");
     </script>
-  <link rel="stylesheet" crossorigin href="./assets/index-v1.1.15.css">
-  <link rel="stylesheet" href="./assets/map-label-fix.css?v=1.1.15">
+  <link rel="stylesheet" crossorigin href="./assets/index-v1.1.16.css">
+  <link rel="stylesheet" href="./assets/map-label-fix.css?v=1.1.16">
   </head>
   <body><div id="root"></div></body>
 </html>
