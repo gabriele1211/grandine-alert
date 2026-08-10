@@ -1,5 +1,5 @@
 {
-  "latest": "1.1.13",
-  "label": "Versione 1.1.13",
-  "message": "Intestazioni più compatte e pagina Rischio alleggerita, mantenendo gli avvisi distinti per telefono e auto."
+  "latest": "1.1.15",
+  "label": "Versione 1.1.15",
+  "message": "Passa tra Radar e Rischio anche con uno swipe orizzontale, senza interferire con cursore, mappe e pulsanti."
 }
